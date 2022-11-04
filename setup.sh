@@ -2,6 +2,8 @@
 
 set -e
 
+remote_url="https://github.com/zoedsoupe/minicursos-scti-2022.git"
+
 print_nix_config() {
 echo <<-EOF
 keep-outputs = true
@@ -54,6 +56,14 @@ install_vscode() {
   sudo apt-get update && sudo apt-get install code
 }
 
+download_project() {
+  mkdir $1
+  cd $1
+  git init
+  git remote add origin -f $remote_url
+  git pull origin main
+}
+
 PS3="Escolha o que deseja fazer: "
 options=("Instalar Nix" "Instalar VScode" "Projeto Elixir" "Projeto SQLite" "Projeto Mongo" "Projeto CockroachDB")
 
@@ -87,19 +97,35 @@ do
       ;;
 
     "Projeto Elixir")
-      echo "ihaa"
+      path="$HOME/dummy"
+      download_project $path
+      mv "$path/concurrency" "$HOME/elixir_project"
+      rm -rf $path
+      break
       ;;
 
     "Projeto SQLite")
-      echo "ihaaa"
+      path="$HOME/dummy"
+      download_project $path
+      mv "$path/sqlite_project" $HOME
+      rm -rf $path
+      break
       ;;
 
     "Projeto Mongo")
-      echo "ihaaaa"
+      path="$HOME/dummy"
+      download_project $path
+      mv "$path/mongodb_project" $HOME
+      rm -rf $path
+      break
       ;;
 
     "Projeto CockroachDB")
-      echo "ihaaaaa"
+      path="$HOME/dummy"
+      download_project $path
+      mv "$path/cockroachdb_project" $HOME
+      rm -rf $path
+      break
       ;;
 
     *) echo "Opção Inválida";;
