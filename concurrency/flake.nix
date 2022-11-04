@@ -1,16 +1,16 @@
 {
-  description = ''
-    Plataforma PEA Pescarte
-  '';
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    copper.url = "github:zoedsoupe/copper";
+  };
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
-
-  outputs = { self, nixpkgs }:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
         inherit system;
+        overlays = [ inputs.copper.overlays."${system}".default ];
         config.allowUnfree = true;
       };
     in
@@ -29,6 +29,7 @@
             libiconv
             elixir
             glibcLocales
+            copper
           ] ++ lib.optional stdenv.isLinux [
             inotify-tools
             gtk-engine-murrine
