@@ -29,7 +29,7 @@ install_nix() {
 
   mkdir ~/.config/nixpkgs
   touch ~/.config/nixpkgs/config.nix
-  echo "{ allowUnfree = true; }" | ~/.config/nixpkgs/config.nix
+  echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
 
   echo "Nix instalado com sucesso!\n"
 }
