@@ -142,11 +142,11 @@
         "vimtex": "vimtex"
       },
       "locked": {
-        "lastModified": 1667511480,
-        "narHash": "sha256-9lqll2KnsBZjS661WStc9DWKjwrKYH18CXAfYhdmYqo=",
+        "lastModified": 1667593493,
+        "narHash": "sha256-JXnZK4nFlNhLppUDdsPHn7sDimYKUxIAcVJOLTB9V0k=",
         "owner": "zoedsoupe",
         "repo": "copper",
-        "rev": "d9c40398cbcc7cfb66667146cbd3656e37c95879",
+        "rev": "0b80f40522d161741331ddb0953e7d872f3bfd7a",
         "type": "github"
       },
       "original": {

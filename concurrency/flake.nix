@@ -4,13 +4,13 @@
     copper.url = "github:zoedsoupe/copper";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, copper }:
     let
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ inputs.copper.overlays."${system}".default ];
+        overlays = [ copper.overlays.default ];
         config.allowUnfree = true;
       };
     in
@@ -29,7 +29,7 @@
             libiconv
             elixir
             glibcLocales
-            copper
+            pkgs.copper
           ] ++ lib.optional stdenv.isLinux [
             inotify-tools
             gtk-engine-murrine
