@@ -2,7 +2,9 @@
 
 set -e
 
-remote_url="https://github.com/zoedsoupe/minicursos-scti-2022.git"
+# Caminho temporário pro projeto
+path="$HOME/dummy"
+remote_url="https://github.com/zoedsoupe/minicursos-scti-2022"
 
 print_nix_config() {
 echo <<-EOF
@@ -45,7 +47,13 @@ install_direnv() {
 # Instala vscode em distribuições derivadas
 # do Debian como Ubuntu ou Mint
 install_vscode() {
-  echo "Baixando e Instalando vscode"
+  echo "Baixando e Instalando vscode..."
+
+  if ! apt-get --version &> /dev/null; then
+    echo "Você não está numa distribuição derivada do Debian, abortando..."
+    exit 0
+  fi
+
   sudo apt-get install wget gpg
   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
   sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -57,11 +65,7 @@ install_vscode() {
 }
 
 download_project() {
-  mkdir $1
-  cd $1
-  git init
-  git remote add origin -f $remote_url
-  git pull origin main
+  git clone $remote_url $path
 }
 
 PS3="Escolha o que deseja fazer: "
@@ -97,7 +101,6 @@ do
       ;;
 
     "Projeto Elixir")
-      path="$HOME/dummy"
       download_project $path
       mv "$path/concurrency" "$HOME/elixir_project"
       rm -rf $path
@@ -105,7 +108,6 @@ do
       ;;
 
     "Projeto SQLite")
-      path="$HOME/dummy"
       download_project $path
       mv "$path/sqlite_project" $HOME
       rm -rf $path
@@ -113,7 +115,6 @@ do
       ;;
 
     "Projeto Mongo")
-      path="$HOME/dummy"
       download_project $path
       mv "$path/mongodb_project" $HOME
       rm -rf $path
@@ -121,7 +122,6 @@ do
       ;;
 
     "Projeto CockroachDB")
-      path="$HOME/dummy"
       download_project $path
       mv "$path/cockroachdb_project" $HOME
       rm -rf $path
