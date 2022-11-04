@@ -1,2 +1,6 @@
 /mongodb_project/.database/
 /mongodb_project/mongo.log
+/cockroachdb_project/cockroach-data/
+/cockroachdb_project/certs/
+/cockroachdb_project/ca.key
+/**/__pycache__/
