@@ -18,7 +18,7 @@
       devShells = {
         "${system}".default = pkgs.mkShell {
           name = "pescarte";
-          buildInputs = with pkgs; [
+          packages = with pkgs; [
             gnumake
             gcc
             readline

@@ -20,7 +20,7 @@
     in rec {
       devShells."${system}".default = pkgs.mkShell {
         name = "cockrochdb_project";
-        buildInputs = with pkgs; [
+        packages = with pkgs; [
           wget gcc pythonDrv cockroachdb pkgs.copper
         ];
         shellHook = ''

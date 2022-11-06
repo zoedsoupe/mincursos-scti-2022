@@ -20,7 +20,7 @@
     in rec {
       devShells."${system}".default = pkgs.mkShell {
         name = "mongodb_project";
-        buildInputs = with pkgs; [
+        packages = with pkgs; [
           wget gcc pythonDrv mongodb pkgs.copper
         ];
         shellHook = "mkdir -p .database; chmod +x start_db.sh";

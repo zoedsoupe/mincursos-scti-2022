@@ -16,7 +16,7 @@
     in rec {
       devShells."${system}".default = pkgs.mkShell {
         name = "sqlite_project";
-        buildInputs = with pkgs; [
+        packages = with pkgs; [
           wget gcc python310 sqlite pkgs.copper
         ];
       };
