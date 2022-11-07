@@ -17,7 +17,7 @@
     rec {
       devShells = {
         "${system}".default = pkgs.mkShell {
-          name = "pescarte";
+          name = "concurrency";
           packages = with pkgs; [
             gnumake
             gcc
