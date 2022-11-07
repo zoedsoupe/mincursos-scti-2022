@@ -159,7 +159,7 @@ Abstrações para spawnnar processos e executar tarefas assíncronas
 
 - `task = Task.async(fn -> 80 * 42 end)`
 - `res = 10 + 20`
-- `res + Tasl.await(task)`
+- `res + Task.await(task)`
 
 ## Agents
 
@@ -178,3 +178,29 @@ Veja o arquivo [08-genserver.exs](./concurrency/07-genserver.exs)
 Abstração para construção de serviço com estado ou não em processos separados.
 
 Veja o arquivo [09-supervisor.exs](./concurrency/08-supervisor.exs)
+
+## Desafio
+
+### Gerenciador de senhas
+
+A ideia é criar uma estrutura tolerante a falhas e concorrente,
+que seja capaz de gerenciar uma lista de senhas antigas e novas, tendo os
+seguintes serviços:
+
+#### PasswordLock
+
+- Pessoa usuária inicia o serviço e recupera o `pid` do processo
+- Uma função `unlock` que permitirá a troca de senha futura. Caso a senha seja a mesma que a dada inicialmente a função retornará `:ok` caso contrário `{:error, "wrong_password"}`. Essa chamada deverá ser síncrona
+- Uma função `reset` que irá resetar a senha atual, será uma chamada síncrona onde receberá a senha antiga e a nova, caso a antiga esteja correta, atualizamos o estado do gerenciador com a nova senha e retornamos `:ok`, caso contrário retornamos `{:error, "wrong_password"}`.
+- Ambas as funções `unlock` e `reset` devem usar um outro serviço de logger em caso de erro, que irá usar escrita em disco num arquivo com o log dos erros!
+
+#### PasswordLogger
+
+- O serviço de log terá apenas uma função `log_incorrect`, além da função para iniciá-lo, onde receberá de início um caminho para um arquivo de log e o texto a ser logado. Deverá ser uma chamada assíncrona!
+- Ambos os serviços devem estar sendo controlados por um supervisor, com a estratégia `:one_for_one`
+
+### Links para ajuda
+
+- https://hexdocs.pm/elixir/GenServer.html
+- https://hexdocs.pm/elixir/Supervisor.html
+- https://hexdocs.pm/elixir/File.html
