@@ -102,7 +102,7 @@ do
 
     "Projeto Elixir")
       download_project $path
-      mv "$path/concurrency" "$HOME/elixir_project"
+      mv "$path/concurrency" "$HOME/concurrency"
       rm -rf $path
       break
       ;;
