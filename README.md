@@ -19,5 +19,5 @@ Após baixá-lo, execute-o com `./setup` e escolha a opção desejada!
 
 ## Workshops disponíveis
 
-- [Concorrência com Elixir](./concurrency.md)
+- [Concorrência com Elixir](./concurrency)
 - [SQL, NoSQL e NewSQL, quais as diferenças e quando usar?](./database.md)
