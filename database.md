@@ -78,9 +78,36 @@ CREATE TABLE entidade_b (
 );
 ```
 
+### Tipos de Dados
+
+#### SQLite
+
+- `NULL`: valores nulos
+- `INTEGER`: um inteiro com sinal, máximo de 8 bytes
+- `REAL`: ponto flutuante, com máximo de 8 bytes
+- `TEXT`: string em UTF-8
+- `BLOB`: binário de arquivo
+
+### CockroachDB
+
+- `ARRAY`: coleção de dados do mesmo tipo
+- `BIT`: string em binário
+- `BOOL`: valor booleano `true` ou  `false`
+- `DATE`: datas no formato ISO-8601
+- `ENUM`: valor definido por usuário
+- `DECIMAL`: ponto flutuante com valor exato, fixo
+- `FLOAT`: ponto flutuante inexato com no máximo 8 bytes
+- `INET`: endereço IPv4 ou IPv6
+- `JSONB`: `JSON` em binário
+- `INT`: inteiro com sinal, máximo de 8 bytes
+- `SERIAL`: inteiro com valor padrão
+- `STRING`: string em UTF-8
+- `UUID`: valor hexadecimal
+
 ### Link para quadro (DER)
 
 > senha "vj56dm"
+
 https://whimsical.com/der-552PtzKZxnX9svdwZ6r5XQ@2Ux7TurymMytEvTBQAby
 
 ## Banco de Dados Não Relacionais
@@ -101,3 +128,38 @@ Como uma estrutura padronizada não é necessária, há diversas implementaçõe
 - Redis
 - DynamoDB
 - Cassandra
+
+### Coleções e documentos (MongoDB)
+
+```js dark
+// Coleção alunos
+
+// Doc 1
+[
+  {
+    name: 'alu1',
+    birhtdate: '2001-07-27',
+    status: 'F',
+    groups: ['politics', 'news']
+  },
+  {
+    name: 'sue',
+    birhtdate: '2001-07-22',
+    status: 'A',
+    groups: ['news', 'mathematics']
+  }
+]
+```
+
+### Tipos de Dados
+
+- `String`
+- `Integer`: suporta valores de 32 a 64 bits
+- `Double`: ponto flutuante com no máximo 8 bytes
+- `Boolean`
+- `Array`
+- `Object`: tipo que referência um outro documento
+- `Date`: objeto de data
+- `Null`
+
+## Desafios
